@@ -15,6 +15,7 @@ function App() {
   const activeScale =
     data.scales.find((scale) => scale.id === activeScaleID) || data.scales[0];
 
+  // TODO Function
   const accidentals =
     activeScale &&
     activeScale.notes
