@@ -11,10 +11,6 @@ function App() {
 
   const activeScale = data.scales.find((scale) => scale.id === activeScaleID);
 
-  function handleClick(id: number): void {
-    console.log(id);
-  }
-
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {
     setActiveScaleID(Number(e.target.value));
   }
