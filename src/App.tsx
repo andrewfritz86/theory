@@ -1,15 +1,28 @@
 import "./App.css";
 
 import { useState, ChangeEvent } from "react";
+import classNames from "classnames";
 
 import DropDown from "./components/DropDown/DropDown";
 
 import data from "./data.json";
 
+import { Note } from "./types";
+
 function App() {
   const [activeScaleID, setActiveScaleID] = useState(1);
 
-  const activeScale = data.scales.find((scale) => scale.id === activeScaleID);
+  const activeScale =
+    data.scales.find((scale) => scale.id === activeScaleID) || data.scales[0];
+
+  // TODO Function
+  const accidentals =
+    activeScale &&
+    activeScale.notes
+      .map((scaleNote) => {
+        return data.notes.find((note) => note.id === scaleNote);
+      })
+      .filter((n) => n?.is_accidental).length;
 
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {
     setActiveScaleID(Number(e.target.value));
@@ -20,11 +33,15 @@ function App() {
     return false;
   }
 
-  function getNoteClass(id: number): string {
-    if (activeScale?.root_note_id === id) return "basis-1/4 bg-indigo-500";
-    return isNoteInScale(id)
-      ? "basis-1/4 bg-indigo-500/50"
-      : "basis-1/4 bg-slate-100";
+  // TODO tests...
+  function getNoteClass(note: Note): string {
+    const { id, is_accidental } = note;
+    return classNames("basis-1/4", {
+      "bg-red-500": is_accidental && isNoteInScale(note.id),
+      "bg-indigo-500": activeScale.root_note_id === id,
+      "bg-indigo-500/50": isNoteInScale(id) && activeScale.root_note_id !== id,
+      "bg-slate-100": !isNoteInScale(id),
+    });
   }
 
   return (
@@ -39,8 +56,13 @@ function App() {
           </div>
           <div className="flex flex-row justify-center flex-wrap">
             {data.notes.map((note) => (
-              <button className={getNoteClass(note.id)}>{note.string}</button>
+              <button key={note.id} className={getNoteClass(note)}>
+                {note.string}
+              </button>
             ))}
+          </div>
+          <div>
+            <h4>Total Accidentals: {accidentals}</h4>
           </div>
         </section>
       </div>

@@ -1,10 +1,6 @@
 import { ChangeEvent } from "react";
 
-type Scale = {
-  name: string;
-  id: number;
-  notes: number[];
-};
+import { Scale } from "../../types";
 
 interface Props {
   handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
@@ -15,7 +11,9 @@ export default function DropDown({ handleChange, scales }: Props) {
   return (
     <select name="scale" id="scale" onChange={handleChange}>
       {scales.map((scale) => (
-        <option value={scale.id}>{scale.name}</option>
+        <option key={scale.id} value={scale.id}>
+          {scale.name}
+        </option>
       ))}
     </select>
   );

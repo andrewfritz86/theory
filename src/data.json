@@ -28,51 +28,63 @@
   "notes": [
     {
       "id": 1,
-      "string": "C"
+      "string": "C",
+      "is_accidental": false
     },
     {
       "id": 2,
-      "string": "C#"
+      "string": "C#",
+      "is_accidental": true
     },
     {
       "id": 3,
-      "string": "D"
+      "string": "D",
+      "is_accidental": false
     },
     {
       "id": 4,
-      "string": "D#"
+      "string": "D#",
+      "is_accidental": true
     },
     {
       "id": 5,
-      "string": "E"
+      "string": "E",
+      "is_accidental": false
     },
     {
       "id": 6,
-      "string": "F"
+      "string": "F",
+      "is_accidental": false
     },
     {
       "id": 7,
-      "string": "F#"
+      "string": "F#",
+      "is_accidental": true
     },
     {
       "id": 8,
-      "string": "G"
+      "string": "G",
+      "is_accidental": false
     },
     {
       "id": 9,
-      "string": "G#"
+      "string": "G#",
+      "is_accidental": true
     },
     {
       "id": 10,
-      "string": "A"
+      "string": "A",
+      "is_accidental": false
     },
     {
       "id": 11,
-      "string": "A#"
+      "string": "A#",
+      "is_accidental": true
     },
     {
       "id": 12,
-      "string": "B"
+      "string": "B",
+      "is_accidental": false
     }
   ]
 }
