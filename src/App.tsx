@@ -7,11 +7,7 @@ import DropDown from "./components/DropDown/DropDown";
 
 import data from "./data.json";
 
-type Note = {
-  id: number;
-  string: string;
-  is_accidental: boolean;
-};
+import { Note } from "./types";
 
 function App() {
   const [activeScaleID, setActiveScaleID] = useState(1);

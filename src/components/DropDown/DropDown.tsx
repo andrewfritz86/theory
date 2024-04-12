@@ -1,10 +1,6 @@
 import { ChangeEvent } from "react";
 
-type Scale = {
-  name: string;
-  id: number;
-  notes: number[];
-};
+import { Scale } from "../../types";
 
 interface Props {
   handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
