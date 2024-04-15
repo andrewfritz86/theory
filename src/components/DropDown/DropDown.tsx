@@ -9,12 +9,19 @@ interface Props {
 
 export default function DropDown({ handleChange, scales }: Props) {
   return (
-    <select name="scale" id="scale" onChange={handleChange}>
-      {scales.map((scale) => (
-        <option key={scale.id} value={scale.id}>
-          {scale.name}
-        </option>
-      ))}
-    </select>
+    <div className="flex mb-8">
+      <select
+        name="scale"
+        id="scale"
+        onChange={handleChange}
+        className="font-semibold text-lg"
+      >
+        {scales.map((scale) => (
+          <option key={scale.id} value={scale.id}>
+            {scale.name}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
