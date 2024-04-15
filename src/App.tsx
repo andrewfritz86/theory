@@ -28,7 +28,6 @@ function App() {
     return false;
   }
 
-  // TODO tests...
   function getNoteClass(note: Note): string {
     const { id, is_accidental } = note;
     return classNames("basis-1/4", {
