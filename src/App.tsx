@@ -5,6 +5,8 @@ import classNames from "classnames";
 
 import DropDown from "./components/DropDown/DropDown";
 
+import { getAccidentalsCount } from "./utils/helpers";
+
 import data from "./data.json";
 
 import { Note } from "./types";
@@ -15,14 +17,7 @@ function App() {
   const activeScale =
     data.scales.find((scale) => scale.id === activeScaleID) || data.scales[0];
 
-  // TODO Function
-  const accidentals =
-    activeScale &&
-    activeScale.notes
-      .map((scaleNote) => {
-        return data.notes.find((note) => note.id === scaleNote);
-      })
-      .filter((n) => n?.is_accidental).length;
+  const accidentalsCount = getAccidentalsCount(activeScale, data.notes);
 
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {
     setActiveScaleID(Number(e.target.value));
@@ -33,7 +28,6 @@ function App() {
     return false;
   }
 
-  // TODO tests...
   function getNoteClass(note: Note): string {
     const { id, is_accidental } = note;
     return classNames("basis-1/4", {
@@ -65,7 +59,7 @@ function App() {
         </div>
         <div className="">
           <h4 className="text-lg font-semibold">
-            Total Accidentals: {accidentals}
+            Total Accidentals: {accidentalsCount}
           </h4>
         </div>
       </div>
