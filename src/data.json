@@ -23,6 +23,18 @@
       "id": 4,
       "notes": [10, 12, 2, 3, 5, 7, 9],
       "root_note_id": 10
+    },
+    {
+      "name": "E Major",
+      "id": 5,
+      "notes": [5, 7, 9, 10, 12, 2, 4],
+      "root_note_id": 5
+    },
+    {
+      "name": "B Major",
+      "id": 6,
+      "notes": [12, 2, 4, 5, 7, 9, 11],
+      "root_note_id": 12
     }
   ],
   "notes": [
@@ -33,7 +45,7 @@
     },
     {
       "id": 2,
-      "string": "C#",
+      "string": "C \u266F",
       "is_accidental": true
     },
     {
@@ -43,7 +55,7 @@
     },
     {
       "id": 4,
-      "string": "D#",
+      "string": "D \u266F",
       "is_accidental": true
     },
     {
@@ -58,7 +70,7 @@
     },
     {
       "id": 7,
-      "string": "F#",
+      "string": "F \u266F",
       "is_accidental": true
     },
     {
@@ -68,7 +80,7 @@
     },
     {
       "id": 9,
-      "string": "G#",
+      "string": "G \u266F",
       "is_accidental": true
     },
     {
@@ -78,7 +90,7 @@
     },
     {
       "id": 11,
-      "string": "A#",
+      "string": "A \u266F",
       "is_accidental": true
     },
     {

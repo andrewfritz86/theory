@@ -45,28 +45,31 @@ function App() {
   }
 
   return (
-    <>
-      <div className="flex flex-col">
-        <section className="flex flex-col center flex-wrap content-center">
-          <h2 className="text-3xl font-bold underline">
-            Active Scale: {activeScale?.name}
-          </h2>
-          <div>
-            <DropDown scales={data.scales} handleChange={handleChange} />
-          </div>
-          <div className="flex flex-row justify-center flex-wrap">
-            {data.notes.map((note) => (
-              <button key={note.id} className={getNoteClass(note)}>
-                {note.string}
-              </button>
-            ))}
-          </div>
-          <div>
-            <h4>Total Accidentals: {accidentals}</h4>
-          </div>
-        </section>
+    <div className="">
+      <h1 className="text-xl font-bold text-center mb-16">
+        Music Theory Practice
+      </h1>
+      <div className="flex flex-row justify-evenly">
+        <div className="flex">
+          <h4 className="text-lg font-semibold underline mb-8 mr-2 font-sans no-underline">
+            Active Scale:
+          </h4>
+          <DropDown scales={data.scales} handleChange={handleChange} />
+        </div>
+        <div className="">
+          {data.notes.map((note) => (
+            <button key={note.id} className={getNoteClass(note)}>
+              {note.string}
+            </button>
+          ))}
+        </div>
+        <div className="">
+          <h4 className="text-lg font-semibold">
+            Total Accidentals: {accidentals}
+          </h4>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
