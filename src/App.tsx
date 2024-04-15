@@ -23,6 +23,7 @@ function App() {
     setActiveScaleID(Number(e.target.value));
   }
 
+  //foo
   function isNoteInScale(id: number): boolean {
     if (activeScale?.notes.includes(id)) return true;
     return false;
