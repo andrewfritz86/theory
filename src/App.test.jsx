@@ -16,7 +16,7 @@ describe("App", () => {
     test("Initial state", () => {
       render(<App />);
       const accidentalsCount = screen.getByText(/Total Accidentals/i);
-      expect(accidentalsCount).toBeinDocument();
+      expect(accidentalsCount).toBeInTheDocument();
     });
   });
 });
