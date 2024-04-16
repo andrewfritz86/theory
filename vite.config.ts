@@ -12,5 +12,9 @@ export default defineConfig({
     globals: true,
     setupFiles: ["./setupTests.ts"],
   },
-  base: "./",
+  server: {
+    fs: {
+      allow: ["./setupTest.ts"],
+    },
+  },
 });
