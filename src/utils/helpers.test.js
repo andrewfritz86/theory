@@ -1,10 +1,23 @@
 import { expect, test, describe } from "vitest";
 
-import { getAccidentalsCount } from "./helpers";
+import { getAccidentalsCount, getNotesInActiveScale } from "./helpers";
 import data from "../data.json";
 
 const { notes, scales } = data;
 describe("Helpers", () => {
+  describe("GetNotesInActiveScale", () => {
+    test("It correctly finds the notes in C major", () => {
+      const cMajor = {
+        name: "C Major",
+        id: 1,
+        notes: [1, 3, 5, 6, 8, 10, 13],
+        root_note_id: 1,
+      };
+      const result = getNotesInActiveScale(data.notes, cMajor);
+      const notes = result.map((n) => n.id);
+      expect(notes).toEqual([1, 3, 5, 6, 8, 10, 13]);
+    });
+  });
   describe("GetAccidentalsCount", () => {
     describe("For C Major", () => {
       test("correctly counts accidental notes", () => {
