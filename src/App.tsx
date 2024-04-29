@@ -1,15 +1,13 @@
 import "./App.css";
 
 import { useState, ChangeEvent } from "react";
-import classNames from "classnames";
 
 import DropDown from "./components/DropDown/DropDown";
+import Notes from "./components/Notes/Notes";
 
 import { getAccidentalsCount } from "./utils/helpers";
 
 import data from "./data.json";
-
-import { Note } from "./types";
 
 import { getNotesInActiveScale } from "./utils/helpers";
 
@@ -27,44 +25,23 @@ function App() {
     setActiveScaleID(Number(e.target.value));
   }
 
-  function isNoteInScale(id: number): boolean {
-    if (activeScale?.notes.includes(id)) return true;
-    return false;
-  }
-
-  function getNoteClass(note: Note): string {
-    const { id, is_accidental } = note;
-    return classNames("basis-1/4", {
-      "bg-red-500": is_accidental && isNoteInScale(note.id),
-      "bg-indigo-500": activeScale.root_note_id === id,
-      "bg-indigo-500/50": isNoteInScale(id) && activeScale.root_note_id !== id,
-      "bg-slate-100": !isNoteInScale(id),
-    });
-  }
-
   return (
     <div className="p-4 h-screen flex flex-col justify-center">
       <div>
-        <h1 className="text-xl font-bold text-center mb-16">
+        <h1 className="text-3xl font-bold text-center mb-16 text-sky-500/100">
           Music Theory Practice
         </h1>
         <div className="flex flex-col justify-evenly">
-          <div className="flex flex-row items-baseline mb-8">
-            {activeNotes.map((note) => (
-              <button key={note.id} className={getNoteClass(note)}>
-                {note.string}
-              </button>
-            ))}
-          </div>
+          <Notes activeNotes={activeNotes} activeScale={activeScale} />
           <div className="flex flex-row justify-evenly">
             <div className="flex">
-              <h4 className="text-lg font-semibold underline mb-8 mr-2 font-sans no-underline">
+              <h4 className="text-lg font-semibold underline mb-8 mr-2 font-sans no-underline text-sky-500/100">
                 Active Scale:
               </h4>
               <DropDown scales={data.scales} handleChange={handleChange} />
             </div>
             <div className="">
-              <h4 className="text-lg font-semibold">
+              <h4 className="text-lg font-semibold text-sky-500/100">
                 Total Accidentals: {accidentalsCount}
               </h4>
             </div>
