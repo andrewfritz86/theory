@@ -9,7 +9,7 @@ interface Props {
 
 export default function DropDown({ handleChange, scales }: Props) {
   return (
-    <div className="flex mb-8">
+    <div className="flex mb-8 text-sky-500/100">
       <select
         name="scale"
         id="scale"
