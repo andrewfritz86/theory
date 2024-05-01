@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import ModeToggle from "@components/ModeToggle/ModeToggle";
 import Review from "@components/Modes/Review/Review";
+import Challenge from "@components/Modes/Challenge/Challenge";
 
 import { Mode } from "@types";
 
@@ -17,7 +18,7 @@ function App() {
           Music Theory Practice
         </h1>
         <ModeToggle activeMode={activeMode} setActiveMode={setActiveMode} />
-        {activeMode === Mode.review ? <Review /> : <div>foo</div>}
+        {activeMode === Mode.review ? <Review /> : <Challenge />}
       </div>
     </div>
   );
