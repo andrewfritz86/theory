@@ -10,6 +10,14 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
+  resolve: {
+    alias: {
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@utils": path.resolve(__dirname, "./src/utils"),
+      "@data": path.resolve(__dirname, "./src/data.json"),
+      "@types": path.resolve(__dirname, "./src/types.ts"),
+    },
+  },
   test: {
     environment: "jsdom",
     globals: true,

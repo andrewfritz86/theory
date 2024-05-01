@@ -2,10 +2,10 @@ import "./App.css";
 
 import { useState } from "react";
 
-import ModeToggle from "./components/ModeToggle/ModeToggle";
-import Review from "./components/Modes/Review";
+import ModeToggle from "@components/ModeToggle/ModeToggle";
+import Review from "@components/Modes/Review/Review";
 
-import { Mode } from "./types";
+import { Mode } from "@types";
 
 function App() {
   const [activeMode, setActiveMode] = useState(Mode.review);
