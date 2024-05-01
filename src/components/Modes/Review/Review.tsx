@@ -1,11 +1,10 @@
 import { useState, ChangeEvent } from "react";
-import data from "../../data.json";
+import data from "@data";
 
-import { getNotesInActiveScale } from "../../utils/helpers";
-import { getAccidentalsCount } from "../../utils/helpers";
+import { getNotesInActiveScale, getAccidentalsCount } from "@utils/helpers";
 
-import Notes from "../Notes/Notes";
-import DropDown from "../DropDown/DropDown";
+import Notes from "@components/Notes/Notes";
+import DropDown from "@components/DropDown/DropDown";
 
 export default function Review() {
   const [activeScaleID, setActiveScaleID] = useState(1);
