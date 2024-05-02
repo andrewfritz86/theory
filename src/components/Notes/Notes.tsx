@@ -31,10 +31,8 @@ export default function Notes({ activeNotes, activeScale }: NotesProps) {
   return (
     <div className="flex flex-row items-baseline justify-evenly mb-8">
       {activeNotes.map((note, i) => (
-        <div className="flex flex-col basis-1/4">
-          <button key={note.id} className={getNoteClass(note)}>
-            {note.string}
-          </button>
+        <div key={note.id} className="flex flex-col basis-1/4">
+          <button className={getNoteClass(note)}>{note.string}</button>
           <div className="self-center">{mapNotesToLabelsMajor(i)} </div>
         </div>
       ))}

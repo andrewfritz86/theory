@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import classNames from "classnames";
 import { shuffle } from "lodash";
 
 import { Note, Scale } from "@types";
 import data from "@data";
 
+import { ChallengeContext } from "@context/challenge";
 const { notes, scales } = data;
 // this stuff will need to be refs or go in an effect as we will lose it on renders...
 const shuffledNotes: Note[] = shuffle(notes);
@@ -16,7 +17,7 @@ export default function Challenge() {
   const [notesFound, setNotesFound] = useState<number[]>([]);
   const [inProgress, setInprogress] = useState<boolean>(true);
   const notesLeftCount = notesLeft.length;
-
+  console.log("context", useContext(ChallengeContext));
   function handleClick(id: number): void {
     const index = notesLeft.indexOf(id);
     if (index > -1) {
@@ -48,6 +49,7 @@ export default function Challenge() {
               onClick={() => {
                 handleClick(note.id);
               }}
+              key={note.id}
               className={classNames("rounded-md m-2 basis-1/4 h-20", {
                 "bg-green-500": notesFound.includes(note.id),
                 "bg-sky-500/50": !notesFound.includes(note.id),

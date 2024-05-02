@@ -5,6 +5,7 @@
       "@data":["src/data.json"],
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"],
+      "@context/*": ["src/context/*"],
       "@types": ["src/types.ts"],
     },
     "target": "ES2020",
