@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import ModeToggle from "@components/ModeToggle/ModeToggle";
 import Review from "@components/Modes/Review/Review";
@@ -9,6 +9,9 @@ import Challenge from "@components/Modes/Challenge/Challenge";
 import { Mode } from "@types";
 
 function App() {
+  useEffect(() => {
+    console.log(window.location);
+  }, []);
   const [activeMode, setActiveMode] = useState(Mode.review);
 
   return (

@@ -9,7 +9,7 @@ interface Props {
 export default function ModeToggle({ activeMode, setActiveMode }: Props) {
   function getButtonClass(mode: Mode) {
     return classNames("p-1", {
-      "bg-orange-500": activeMode === mode,
+      "border-sky-500 border-b-2": activeMode === mode,
     });
   }
   return (
