@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-import { Note, Scale } from "../../types";
+import { Note, Scale } from "@types";
 
 interface NotesProps {
   activeNotes: Note[];

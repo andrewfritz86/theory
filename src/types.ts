@@ -10,3 +10,8 @@ export type Scale = {
   notes: number[];
   root_note_id: number;
 };
+
+export enum Mode {
+  review = "review",
+  challenge = "challenge",
+}
