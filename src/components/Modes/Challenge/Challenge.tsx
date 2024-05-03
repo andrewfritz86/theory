@@ -5,30 +5,52 @@ import { shuffle } from "lodash";
 import { Note, Scale } from "@types";
 import data from "@data";
 
-const { notes, scales } = data;
-// this stuff will need to be refs or go in an effect as we will lose it on renders...
-const shuffledNotes: Note[] = shuffle(notes);
-const randomScale: Scale = shuffle(scales).pop() || scales[0];
-const notesInScale: number[] = [...randomScale.notes];
+interface ChallengeGameState {
+  notesLeft: number[];
+  notesFound: number[];
+  shuffledNotes: Note[];
+  inProgress: boolean;
+  randomScale: Scale;
+}
+
+function setUpGameState() {
+  const { notes, scales } = data;
+  const shuffledNotes: Note[] = shuffle(notes);
+  const randomScale: Scale = shuffle(scales).pop() || scales[0];
+  const notesInScale: number[] = [...randomScale.notes];
+  return {
+    shuffledNotes,
+    randomScale,
+    notesLeft: notesInScale,
+    notesFound: [],
+    inProgress: true,
+  };
+}
 
 export default function Challenge() {
-  const [notesLeft, setNotesLeft] = useState<number[]>(notesInScale);
-  const [notesFound, setNotesFound] = useState<number[]>([]);
-  const [inProgress, setInprogress] = useState<boolean>(true);
+  const [gameState, setGameState] = useState<ChallengeGameState>(
+    setUpGameState()
+  );
+  const { inProgress, notesLeft, notesFound, shuffledNotes, randomScale } =
+    gameState;
   const notesLeftCount = notesLeft.length;
-
   function handleClick(id: number): void {
     const index = notesLeft.indexOf(id);
     if (index > -1) {
       notesLeft.splice(index, 1);
-      setNotesLeft([...notesLeft]);
-      setNotesFound((prev) => {
-        const updated = [...prev];
-        updated.push(id);
-        return [...updated];
+      setGameState((prev) => {
+        const updatedNotesFound = [...prev.notesFound];
+        updatedNotesFound.push(id);
+        return {
+          ...prev,
+          notesLeft: [...notesLeft],
+          notesFound: updatedNotesFound,
+        };
       });
       if (![...notesLeft].length) {
-        setInprogress(false);
+        setGameState((prev) => {
+          return { ...prev, inProgress: false };
+        });
       }
     }
   }
@@ -48,6 +70,7 @@ export default function Challenge() {
               onClick={() => {
                 handleClick(note.id);
               }}
+              key={note.id}
               className={classNames("rounded-md m-2 basis-1/4 h-20", {
                 "bg-green-500": notesFound.includes(note.id),
                 "bg-sky-500/50": !notesFound.includes(note.id),
