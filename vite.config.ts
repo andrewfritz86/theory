@@ -16,7 +16,6 @@ export default defineConfig({
       "@utils": path.resolve(__dirname, "./src/utils"),
       "@data": path.resolve(__dirname, "./src/data.json"),
       "@types": path.resolve(__dirname, "./src/types.ts"),
-      "@context": path.resolve(__dirname, "./src/context"),
     },
   },
   test: {
