@@ -10,6 +10,7 @@ import { Mode } from "@types";
 
 function App() {
   useEffect(() => {
+    // TODO path based routing - React-Router?
     console.log(window.location);
   }, []);
   const [activeMode, setActiveMode] = useState(Mode.review);

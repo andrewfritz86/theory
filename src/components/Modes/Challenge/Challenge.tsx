@@ -28,6 +28,8 @@ function setUpGameState() {
 }
 
 export default function Challenge() {
+  // TODO reset button once game is over?
+  // TODO keep score streak in localStorage?
   const [gameState, setGameState] = useState<ChallengeGameState>(
     setUpGameState()
   );
