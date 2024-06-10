@@ -6,6 +6,7 @@ import { Note, Scale } from "@types";
 import data from "@data";
 
 interface ChallengeGameState {
+  badNotes: number[];
   notesLeft: number[];
   notesFound: number[];
   shuffledNotes: Note[];
@@ -24,6 +25,7 @@ function setUpGameState() {
     notesLeft: notesInScale,
     notesFound: [],
     inProgress: true,
+    badNotes: [],
   };
 }
 
@@ -33,8 +35,14 @@ export default function Challenge() {
   const [gameState, setGameState] = useState<ChallengeGameState>(
     setUpGameState()
   );
-  const { inProgress, notesLeft, notesFound, shuffledNotes, randomScale } =
-    gameState;
+  const {
+    badNotes,
+    inProgress,
+    notesLeft,
+    notesFound,
+    shuffledNotes,
+    randomScale,
+  } = gameState;
   const notesLeftCount = notesLeft.length;
   function handleClick(id: number): void {
     const index = notesLeft.indexOf(id);
@@ -54,6 +62,14 @@ export default function Challenge() {
           return { ...prev, inProgress: false };
         });
       }
+    } else {
+      // bad note
+      setGameState((prev) => {
+        return {
+          ...prev,
+          badNotes: [...prev.badNotes, id],
+        };
+      });
     }
   }
 
@@ -92,7 +108,9 @@ export default function Challenge() {
               key={note.id}
               className={classNames("rounded-md m-2 basis-1/4 h-20", {
                 "bg-green-500": notesFound.includes(note.id),
-                "bg-sky-500/50": !notesFound.includes(note.id),
+                "bg-sky-500/50":
+                  !notesFound.includes(note.id) && !badNotes.includes(note.id),
+                "bg-red-500": badNotes.includes(note.id),
               })}
             >
               {note.string}
