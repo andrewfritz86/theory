@@ -56,15 +56,32 @@ export default function Challenge() {
       }
     }
   }
+
+  function resetGame() {
+    setGameState(setUpGameState());
+  }
+
   return (
     <>
       {inProgress && (
         <h2 className="text-center">Remaining Notes: {notesLeftCount} </h2>
       )}
       {!inProgress && !notesLeftCount && (
-        <h2 className="text-center text-xl">You win!</h2>
+        <div className="flex flex-row justify-center items-center">
+          <h2 className="text-center text-xl">You win!</h2>{" "}
+          <button
+            className="m-4 bg-sky-500 hover:bg-sky-700 text-white py-2 px-4 rounded"
+            onClick={resetGame}
+          >
+            {" "}
+            Play again?{" "}
+          </button>
+        </div>
       )}
-      <h2 className="text-center text-xl">Scale: {randomScale.name}</h2>
+      <h2 className="text-center text-xl">
+        Scale:{" "}
+        <span className="text-green-500 font-bold">{randomScale.name}</span>
+      </h2>
       <div className="p-4  flex flex-row justify-center flex-wrap">
         {shuffledNotes.map((note) => {
           return (
