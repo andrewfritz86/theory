@@ -13,7 +13,7 @@ export default function ChallengeNote({
   noteState,
 }: ChallengeNoteProps) {
   const klass = classNames(
-    "over:scale-105 transition duration-250 rounded-md m-2 basis-1/4 h-20",
+    "hover:scale-105 transition duration-250 rounded-md m-2 basis-1/4 h-20",
     {
       "bg-green-500": noteState === NoteState.completed,
       "bg-sky-500/50": noteState === NoteState.clean,
