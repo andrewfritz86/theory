@@ -106,12 +106,16 @@ export default function Challenge() {
                 handleClick(note.id);
               }}
               key={note.id}
-              className={classNames("rounded-md m-2 basis-1/4 h-20", {
-                "bg-green-500": notesFound.includes(note.id),
-                "bg-sky-500/50":
-                  !notesFound.includes(note.id) && !badNotes.includes(note.id),
-                "bg-red-500": badNotes.includes(note.id),
-              })}
+              className={classNames(
+                "hover:scale-105 transition duration-250 rounded-md m-2 basis-1/4 h-20",
+                {
+                  "bg-green-500": notesFound.includes(note.id),
+                  "bg-sky-500/50":
+                    !notesFound.includes(note.id) &&
+                    !badNotes.includes(note.id),
+                  "bg-red-500": badNotes.includes(note.id),
+                }
+              )}
             >
               {note.string}
             </button>

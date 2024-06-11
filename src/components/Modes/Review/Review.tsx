@@ -24,9 +24,6 @@ export default function Review() {
       <Notes activeNotes={activeNotes} activeScale={activeScale} />
       <div className="flex flex-row justify-evenly">
         <div className="flex">
-          <h4 className="text-lg font-semibold underline mb-8 mr-2 font-sans no-underline text-sky-500/100">
-            Scale:
-          </h4>
           <DropDown scales={data.scales} handleChange={handleChange} />
         </div>
         <div className="">
