@@ -31,5 +31,23 @@ describe("App", () => {
       fireEvent.click(reviewButton);
       expect(header).not.toBeInTheDocument();
     });
+
+    describe("In review mode", () => {
+      test("The App defaults to C major", () => {
+        render(<App />);
+        const cMajor = screen.getByRole("option", {
+          name: "C Major",
+        });
+        expect(cMajor.selected).toBe(true);
+      });
+      test("The App allows a user to change the key, and updates the accidentals count copy accordingly", () => {
+        render(<App />);
+        const selectElement = screen.getByLabelText(/Scale:/i);
+        fireEvent.change(selectElement, { target: { value: "3" } });
+        expect(screen.getByText(/Total Accidentals: 2/i)).toBeInTheDocument();
+        fireEvent.change(selectElement, { target: { value: "4" } });
+        expect(screen.getByText(/Total Accidentals: 3/i)).toBeInTheDocument();
+      });
+    });
   });
 });

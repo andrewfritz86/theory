@@ -10,6 +10,12 @@ interface Props {
 export default function DropDown({ handleChange, scales }: Props) {
   return (
     <div className="flex mb-8 text-sky-500/100">
+      <label
+        className="text-lg font-semibold underline mr-2 font-sans no-underline text-sky-500/100"
+        htmlFor="scale"
+      >
+        Scale:
+      </label>
       <select
         name="scale"
         id="scale"
