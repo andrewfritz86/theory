@@ -1,9 +1,10 @@
 import { useState } from "react";
-import classNames from "classnames";
 import { shuffle } from "lodash";
 
-import { Note, Scale } from "@types";
+import { Note, Scale, NoteState } from "@types";
 import data from "@data";
+
+import ChallengeNote from "./ChallengeNote/ChallengeNote";
 
 interface ChallengeGameState {
   badNotes: number[];
@@ -77,6 +78,15 @@ export default function Challenge() {
     setGameState(setUpGameState());
   }
 
+  function getNoteState(note: Note): NoteState {
+    if (notesFound.includes(note.id)) return NoteState.completed;
+    if (!notesFound.includes(note.id) && !badNotes.includes(note.id))
+      return NoteState.clean;
+    if (badNotes.includes(note.id)) return NoteState.failed;
+
+    return NoteState.clean;
+  }
+
   return (
     <>
       {inProgress && (
@@ -89,8 +99,7 @@ export default function Challenge() {
             className="m-4 bg-sky-500 hover:bg-sky-700 text-white py-2 px-4 rounded"
             onClick={resetGame}
           >
-            {" "}
-            Play again?{" "}
+            Play again?
           </button>
         </div>
       )}
@@ -99,28 +108,14 @@ export default function Challenge() {
         <span className="text-green-500 font-bold">{randomScale.name}</span>
       </h2>
       <div className="p-4  flex flex-row justify-center flex-wrap">
-        {shuffledNotes.map((note) => {
-          return (
-            <button
-              onClick={() => {
-                handleClick(note.id);
-              }}
-              key={note.id}
-              className={classNames(
-                "hover:scale-105 transition duration-250 rounded-md m-2 basis-1/4 h-20",
-                {
-                  "bg-green-500": notesFound.includes(note.id),
-                  "bg-sky-500/50":
-                    !notesFound.includes(note.id) &&
-                    !badNotes.includes(note.id),
-                  "bg-red-500": badNotes.includes(note.id),
-                }
-              )}
-            >
-              {note.string}
-            </button>
-          );
-        })}
+        {shuffledNotes.map((note) => (
+          <ChallengeNote
+            key={note.id}
+            note={note}
+            handleClick={handleClick}
+            noteState={getNoteState(note)}
+          />
+        ))}
       </div>
     </>
   );

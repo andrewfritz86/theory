@@ -15,3 +15,9 @@ export enum Mode {
   review = "review",
   challenge = "challenge",
 }
+
+export enum NoteState {
+  completed = "completed",
+  failed = "failed",
+  clean = "clean",
+}
