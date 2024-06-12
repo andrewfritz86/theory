@@ -12,8 +12,8 @@ export type Scale = {
 };
 
 export enum Mode {
-  review = "review",
-  challenge = "challenge",
+  review = "/",
+  challenge = "/challenge",
 }
 
 export enum NoteState {

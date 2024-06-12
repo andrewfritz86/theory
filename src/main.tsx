@@ -1,13 +1,27 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
+
+import Challenge from "@components/Modes/Challenge/Challenge.tsx";
+
+import Review from "@components/Modes/Review/Review.tsx";
+import Layout from "@components/Layout/Layout.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Layout />,
+    children: [
+      {
+        path: "challenge",
+        element: <Challenge />,
+      },
+      {
+        path: "/",
+        element: <Review />,
+      },
+    ],
   },
 ]);
 

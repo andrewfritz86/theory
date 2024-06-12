@@ -1,35 +1,25 @@
 import classNames from "classnames";
 import { Mode } from "@types";
+import { Link, useLocation } from "react-router-dom";
 
-interface Props {
-  activeMode: Mode;
-  setActiveMode: (mode: Mode) => void;
-}
+export default function ModeToggle() {
+  const { pathname } = useLocation();
 
-export default function ModeToggle({ activeMode, setActiveMode }: Props) {
+  console.log(pathname);
   function getButtonClass(mode: Mode) {
     return classNames("p-1", {
-      "border-sky-500 border-b-2": activeMode === mode,
+      "border-sky-500 border-b-2": pathname === mode,
     });
   }
   return (
     <div className="flex justify-center mb-8">
-      <button
-        onClick={() => {
-          setActiveMode(Mode.review);
-        }}
-        className={getButtonClass(Mode.review)}
-      >
+      <Link to="/" className={getButtonClass(Mode.review)}>
         Review
-      </button>
-      <button
-        className={getButtonClass(Mode.challenge)}
-        onClick={() => {
-          setActiveMode(Mode.challenge);
-        }}
-      >
+      </Link>
+
+      <Link className={getButtonClass(Mode.challenge)} to="/challenge">
         Challenge
-      </button>
+      </Link>
     </div>
   );
 }
